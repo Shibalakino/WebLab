@@ -1,2 +1,2 @@
 # WebLab
-This repository was creadted for education with me and my bois 
+This repository was created for education with me and my bois 
