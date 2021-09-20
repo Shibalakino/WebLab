@@ -53,8 +53,12 @@
 }
 
 .materials {
-	text-align: center;
+	text-align: left;
 	float: inline-end;
-	padding: 20px 20px 20px 520px;
+	padding: 0px 20px 20px 520px;
 	font: 1.2rem/1.2 Arial, sans-serif;
+}
+
+.code {
+	color: #173561;
 }
