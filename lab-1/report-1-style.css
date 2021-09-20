@@ -34,8 +34,32 @@
 	padding: 10px 20px; /* Поля вокруг текста */
 }
 
+.tab-content ul {
+	list-style: decimal;
+	padding: 0px 30px;
+}
+
+.tab-content ul li {
+	padding: 10px 0px;
+}
+
+.tab-content ul a:link {
+	color:rgb(0, 0, 0);
+	text-decoration:none;
+}
+
+.tab-content ul a:visited {
+	color:rgb(0, 0, 0);
+	text-decoration:none;
+}
+
+.tab-content ul a:hover {
+	color:rgb(0, 0, 0);
+	text-decoration:underline;
+}
+
 .tab :checked + .tab-title {
-	background-color: #50a2de; /* Цвет фона */
+	background-color: #8b8b8b; /* Цвет фона */
 	border-radius: 8px 8px 0 0; /* Скругляем уголки */
 	color: #fff; /* Цвет текста */
 }
