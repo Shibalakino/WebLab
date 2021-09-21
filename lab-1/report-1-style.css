@@ -99,7 +99,7 @@ aside {
 }
 
 footer {
-	position: absolute;
+	position: fixed;
 	top: 700px;
 	width: 100%;
 	/*text-align: center;*/
