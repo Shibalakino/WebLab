@@ -1,72 +1,89 @@
 
-.main
+#main
 {
-    left: 0;
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 100%; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    background-color: rgb(153, 143, 143); /* Black */
+  /*TODO*/
 }
 
-.header 
-{
-    height: 10%; /* Full-height: remove this if you want "auto" height */
-    width: 100%; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 0; /* Stay on top */
-    left: 0%;
-    top: 0%; /* Stay at the top */
-    overflow: hidden;
-    background-color: #eed1d1;
+div{
+    height: 80px;
 }
-  
-  /* Style the header links */
-  .header a {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 18px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-  }
-  
 
 
-  /* Float the link section to the right */
-  .header-right {
-    float: right;
-  }
-  
-  .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 0; /* Stay on top */
-    top: 10%; /* Stay at the top */
+#header 
+{
+  top: 0%;
+  width: 100%; 
+  position: fixed; 
+  z-index: 0; 
+  left: 0;
+  background-color: rgb(0, 0, 0); 
+  border-bottom-style: solid;
+  border-color: #ccc;
+ 
+}
+
+#left_image_bar img
+{
+  margin-left:10px;
+  margin-top:10px;
+  width: 130px;
+  height: 60px;
+  float: left;
+}
+
+#right_image_bar img
+{
+margin-right:10px;
+width: 50px;
+height: 50px;
+float: right;
+}
+
+
+#leftSidebar{
+    background-color: #ddd;
+}
+
+#footer
+{ 
+  height: 30px;
+  width: 100%; 
+  bottom: 0%;
+  background-color: rgb(63, 63, 63); 
+  position: fixed;
+  border-top-style: solid;
+  border-color: #ccc;
+}
+
+#footer h6
+{
+  margin-top: 6px;
+  text-align:  center;
+}
+
+#sidebar {
+    height: 100%; 
+    width: 160px; 
+    position: fixed; 
+    z-index: 0; 
     left: 0;
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
+    background-color: rgb(0, 0, 0); 
+    overflow-x: hidden; 
     padding-top: 20px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-color: #ccc;
 }
 
-/* The navigation menu links */
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #eed1d1;
-    display: block;
+#sidebar a:hover {
+  color: #ffffff;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #ffffff;
-}
-
-/* Style page content */
-.main {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
+#sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffc7c8;
+  display: block;
 }
