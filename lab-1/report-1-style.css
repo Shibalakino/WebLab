@@ -1,6 +1,6 @@
-.info {
-	text-align: center;
-}
+/*.accordion {
+	width: 500px;
+}*/
 
 .tab input,
 .tab-content {
@@ -13,13 +13,13 @@
 	border-radius: 10px; /* Скругляем уголки */
 	color: #000000; /* Цвет текста */
 	margin-bottom: 10px; /* Расстояние между пунктами */
-	width: 500px;
+	/*width: 500px;*/
 }
 
 .tab-title {
 	text-align: center;
 	padding: 8px; /* Поля вокруг текста */
-	display: block; /* Блочный элемент */
+	display: block; /* Блочный элемент /////////////////////////////////////////////////////*/
 	text-transform: uppercase; /* Все буквы заглавные */
 	font-weight: bold; /* Жирное начертание */
 	/* Вид курсора */
@@ -31,12 +31,13 @@
 }
 
 .tab-content {
-	padding: 10px 20px; /* Поля вокруг текста */
+	padding: 10px 10px; /* Поля вокруг текста */
 }
 
 .tab-content ul {
 	list-style: decimal;
-	padding: 0px 30px;
+	padding: 0px 0px;
+	margin: 0px 30px;
 }
 
 .tab-content ul li {
@@ -44,18 +45,18 @@
 }
 
 .tab-content ul a:link {
-	color:rgb(0, 0, 0);
-	text-decoration:none;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
 }
 
 .tab-content ul a:visited {
-	color:rgb(0, 0, 0);
-	text-decoration:none;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
 }
 
 .tab-content ul a:hover {
-	color:rgb(0, 0, 0);
-	text-decoration:underline;
+	color: rgb(0, 0, 0);
+	text-decoration: underline;
 }
 
 .tab :checked + .tab-title {
@@ -72,17 +73,43 @@
 	display: block; /* Показываем содержимое */
 }
 
-.links {
+/*.links {
 	float: left;
-}
+}*/
 
 .materials {
-	text-align: left;
-	float: inline-end;
-	padding: 0px 20px 20px 520px;
+	/*float: inline-end;*/
+	padding: 0px 20px 20px 20px;
 	font: 1.2rem/1.2 Arial, sans-serif;
 }
+.materials h3 {
+	text-align: center;
+}
 
-.code {
+main {
+	/*position: absolute;*/
+	width: 69%;
+	float: right;
+	/*text-align: center;*/
+	/*padding: 1000px, 0px, 0px, 0px;*/
+}
+aside {
+	float: left;
+	width: 31%;
+}
+
+footer {
+	position: absolute;
+	top: 700px;
+	width: 100%;
+	/*text-align: center;*/
+}
+
+.info {
+	float: right;
+	padding: 10px;
+}
+
+code {
 	color: #173561;
 }
