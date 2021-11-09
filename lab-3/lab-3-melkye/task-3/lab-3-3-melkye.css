@@ -1,0 +1,95 @@
+html {
+  font-family: Tahoma, sans-serif;
+}
+body {
+  margin: 0px;
+}
+main {
+  width: 80%;
+  margin: auto;
+}
+header > h1 {
+  background-color: rgb(245, 192, 87);
+  text-align: center;
+  font-size: 30pt;
+  height: auto;
+}
+main > section#intro > div {
+  background-color: rgb(245, 192, 87);
+}
+h2 {
+  font-size: 25pt;
+  padding-left: 20px;
+  margin: 10px;
+}
+h4 {
+  margin: auto;
+}
+.flex-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.flex-item {
+  margin: 20px;
+  font-size: 20pt;
+}
+#intro > .flex-item {
+  height: 100px;
+  text-align: center;
+}
+.bullet-number {
+  text-align: center;
+  width: 2.5pc;
+  height: 2.5pc;
+  border-radius: 50%;
+  background-color: rgb(245, 192, 87);
+  margin: 5px;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+.credentials {
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  height: 64px;
+  width: 70%;
+}
+footer > a {
+  height: 64px;
+  width: 64px;
+  background-color: black;
+}
+.flex-container#learning-process > .flex-item {
+  width: 30%;
+  border: solid black;
+  height: auto;
+}
+.flex-item > img {
+  width: 100%;
+}
+#learning-process > div > div {
+  padding: 5px;
+  margin: 10px;
+}
+#learning-process > .flex-item {
+  position: relative;
+}
+#learning-process > .flex-item > img {
+  /*position: absolute;*/
+  bottom: 0;
+}
+.level > .flex-item {
+  width: 60%;
+}
+.level > .flex-item > img {
+  width: 100%;
+}
+
+.level > .flex-item > div {
+  width: 100%;
+}

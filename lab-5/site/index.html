@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="us">
+	<head>
+		<meta charset="utf-8" />
+		<title>Lab 5</title>
+
+		<link href="style.css" rel="stylesheet" />
+
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			type="text/javascript"
+		></script>
+
+		<link
+			rel="stylesheet"
+			href="https://code.jquery.com/ui/1.13.0-rc.3/themes/smoothness/jquery-ui.css"
+		/>
+		<script src="https://code.jquery.com/ui/1.13.0-rc.3/jquery-ui.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.40/js/unitegallery.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.40/css/unite-gallery.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.40/themes/default/ug-theme-default.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.40/themes/default/ug-theme-default.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.40/themes/slider/ug-theme-slider.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/open-weather/2.0.0/openweather.min.js"></script>
+
+		<script src="currency.js"></script>
+
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<main>
+			<div id="tabs">
+				<ul>
+					<li><a href="#kitties">Kitties</a></li>
+					<li><a href="#puppies">Puppies</a></li>
+					<li><a href="#chicks">Chicks</a></li>
+					<li><a href="#photo-gallery">Photo gallery</a></li>
+					<li><a href="#video-gallery">Video gallery</a></li>
+					<li><a href="#informers">Informers</a></li>
+					<li><a href="#picture-grid">Picture grid</a></li>
+				</ul>
+				<div id="kitties">
+					<h2>Here you can see some kitties</h2>
+					<div
+						class="flex-container baby-animal-container"
+						id="kitty-container"
+					>
+						<ul class="flex-item menu" id="kitty-menu">
+							<li><div onclick="showBabyAnimal(1, 'kitty')">Kitty №1</div></li>
+							<li><div onclick="showBabyAnimal(2, 'kitty')">Kitty №2</div></li>
+							<li><div onclick="showBabyAnimal(3, 'kitty')">Kitty №3</div></li>
+							<li><div onclick="showBabyAnimal(4, 'kitty')">Kitty №4</div></li>
+							<li>
+								<div>More cute kitties</div>
+								<ul>
+									<li>
+										<div onclick="showBabyAnimal(5, 'kitty')">Kitty №5</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(6, 'kitty')">Kitty №6</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(7, 'kitty')">Kitty №7</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(8, 'kitty')">Kitty №8</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(9, 'kitty')">Kitty №9</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+						<span class="flex-item baby-animal-image" id="kitty-img"></span>
+					</div>
+				</div>
+				<div id="puppies">
+					<h2>Here you can see some puppies</h2>
+					<div
+						class="flex-container baby-animal-container"
+						id="puppy-container"
+					>
+						<ul class="flex-item menu" id="puppy-menu">
+							<li><div onclick="showBabyAnimal(1, 'puppy')">Puppy №1</div></li>
+							<li><div onclick="showBabyAnimal(2, 'puppy')">Puppy №2</div></li>
+							<li><div onclick="showBabyAnimal(3, 'puppy')">Puppy №3</div></li>
+							<li><div onclick="showBabyAnimal(4, 'puppy')">Puppy №4</div></li>
+							<li>
+								<div>More cute puppies</div>
+								<ul>
+									<li>
+										<div onclick="showBabyAnimal(5, 'puppy')">Puppy №5</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(6, 'puppy')">Puppy №6</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(7, 'puppy')">Puppy №7</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(8, 'puppy')">Puppy №8</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(9, 'puppy')">Puppy №9</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+						<span class="flex-item baby-animal-image" id="puppy-img"></span>
+					</div>
+				</div>
+				<div id="chicks">
+					<h2>Here you can see some chicks</h2>
+					<div
+						class="flex-container baby-animal-container"
+						id="chick-container"
+					>
+						<ul class="flex-item menu" id="chick-menu">
+							<li><div onclick="showBabyAnimal(1, 'chick')">Chick №1</div></li>
+							<li><div onclick="showBabyAnimal(2, 'chick')">Chick №2</div></li>
+							<li><div onclick="showBabyAnimal(3, 'chick')">Chick №3</div></li>
+							<li><div onclick="showBabyAnimal(4, 'chick')">Chick №4</div></li>
+							<li>
+								<div>More cute chicks</div>
+								<ul>
+									<li>
+										<div onclick="showBabyAnimal(5, 'chick')">Chick №5</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(6, 'chick')">Chick №6</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(7, 'chick')">Chick №7</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(8, 'chick')">Chick №8</div>
+									</li>
+									<li>
+										<div onclick="showBabyAnimal(9, 'chick')">Chick №9</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+
+						<span class="flex-item baby-animal-image" id="chick-img"></span>
+					</div>
+				</div>
+				<div id="photo-gallery">
+					<section class="regular slider flex-item" id="photo-slider">
+						<img
+							alt="Cute kitty 1"
+							src="img/kitties/1.jpg"
+							data-image="img/kitties/1.jpg"
+							data-description="Cute kitty 1"
+						/>
+						<img
+							alt="Cute puppy 1"
+							src="img/puppies/1.jpg"
+							data-image="img/puppies/1.jpg"
+							data-description="Cute puppy 1"
+						/>
+						<img
+							alt="Cute chick 1"
+							src="img/chicks/1.jpg"
+							data-image="img/chisks/1.jpg"
+							data-description="Cute chick 1"
+						/>
+						<img
+							alt="Cute kitty 2"
+							src="img/kitties/2.jpg"
+							data-image="img/kitties/2.jpg"
+							data-description="Cute kitty 2"
+						/>
+						<img
+							alt="Cute puppy 2"
+							src="img/puppies/2.jpg"
+							data-image="img/puppies/2.jpg"
+							data-description="Cute puppy 2"
+						/>
+						<img
+							alt="Cute chick 2"
+							src="img/chicks/2.jpg"
+							data-image="img/chicks/2.jpg"
+							data-description="Cute chick 2"
+						/>
+						<img
+							alt="Cute kitty 3"
+							src="img/kitties/3.jpg"
+							data-image="img/kitties/3.jpg"
+							data-description="Cute kitty 3"
+						/>
+						<img
+							alt="Cute puppy 3"
+							src="img/puppies/3.jpg"
+							data-image="img/puppies/3.jpg"
+							data-description="Cute puppy 3"
+						/>
+						<img
+							alt="Cute chick 3"
+							src="img/chicks/3.jpg"
+							data-image="img/chicks/3.jpg"
+							data-description="Cute chick 3"
+						/>
+					</section>
+				</div>
+				<div id="video-gallery">
+					<section class="flex-item" id="video-slider">
+						<div
+							data-type="youtube"
+							data-videoid="SIWbjgPYcJY"
+							data-title="Sea Otters"
+							data-description="Cute otters intimately filmed by spy camera "
+						></div>
+
+						<div
+							data-type="youtube"
+							data-videoid="7yLxxyzGiko"
+							data-title="Kittens walk with a tiny chicken"
+							data-description="Kittens walk with a tiny chicken"
+						></div>
+
+						<div
+							data-type="youtube"
+							data-videoid="B1CPE6WWsAQ"
+							data-title="Cute puppies"
+							data-description="Cute puppies funny moments"
+						></div>
+					</section>
+				</div>
+				<div id="informers">
+					<section class="flex-container" id="informer-container">
+						<div class="weather-wrapper hide flex-item" style="display: block">
+							<img class="weather-icon" alt="Weather Icon" />
+
+							<p>
+								<strong>Place</strong> <br /><span class="weather-place"></span>
+							</p>
+
+							<p>
+								<strong>Temperature</strong>
+								<br />
+								<span class="weather-temperature"></span>(<span
+									class="weather-min-temperature"
+								></span>
+								- <span class="weather-max-temperature"></span>)
+							</p>
+
+							<p>
+								<strong>Description</strong> <br /><span
+									class="weather-description"
+								></span>
+							</p>
+
+							<p>
+								<strong>Humidity</strong> <br /><span
+									class="weather-humidity"
+								></span>
+							</p>
+
+							<p>
+								<strong>Wind speed</strong> <br /><span
+									class="weather-wind-speed"
+								></span>
+							</p>
+
+							<p>
+								<strong>Sunrise</strong> <br /><span
+									class="weather-sunrise"
+								></span>
+							</p>
+
+							<p>
+								<strong>Sunset</strong> <br /><span
+									class="weather-sunset"
+								></span>
+							</p>
+						</div>
+						<section
+							class="flex-item flex-container"
+							id="time-currency-container"
+						>
+							<div class="flex-item">
+								<div id="date"></div>
+								<div id="time"></div>
+							</div>
+							<table class="flex-item" id="currency-table">
+								<caption>
+									Курс валют від Приватбанка
+								</caption>
+								<thead>
+									<tr>
+										<th>Валюта 1</th>
+										<th>Валюта 2</th>
+										<th>Купівля</th>
+										<th>Продаж</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</section>
+					</section>
+				</div>
+				<div id="picture-grid">
+					<a href="picture-grid.html">Open the page</a>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<section class="flex-container" id="social-media">
+				<a href="facebook.com" class="flex-item"
+					><img src="img/social-media/facebook.png"
+				/></a>
+				<a href="instagram.com" class="flex-item"
+					><img src="img/social-media/instagram.png"
+				/></a>
+				<a href="linkedin.com" class="flex-item"
+					><img src="img/social-media/linkedin.png"
+				/></a>
+				<a href="youtube.com" class="flex-item"
+					><img src="img/social-media/youtube.png"
+				/></a>
+			</section>
+		</footer>
+		<script>
+			$("#tabs").tabs();
+			$("#kitty-menu").menu();
+			$("#puppy-menu").menu();
+			$("#chick-menu").menu();
+
+			jQuery("#photo-slider").unitegallery();
+			jQuery("#video-slider").unitegallery({
+				gallery_theme: "slider",
+			});
+
+			$(function () {
+				$(".weather-temperature").openWeather({
+					key: "3364b3fb19f17c7a099e581c42e825a8",
+					lang: "ua",
+					city: "Kyiv",
+					placeTarget: ".weather-place",
+					units: "c",
+					windSpeedUnit: "km/h",
+					descriptionTarget: ".weather-description",
+					minTemperatureTarget: ".weather-min-temperature",
+					maxTemperatureTarget: ".weather-max-temperature",
+					windSpeedTarget: ".weather-wind-speed",
+					humidityTarget: ".weather-humidity",
+					sunriseTarget: ".weather-sunrise",
+					sunsetTarget: ".weather-sunset",
+					iconTarget: ".weather-icon",
+					success: function () {
+						$(".weather-temperature").show();
+					},
+					error: function (message) {
+						console.log(message);
+					},
+				});
+			});
+			updateDateTime();
+
+			$(window).on("load", function () {
+				$("#pictures").tjGallery();
+			});
+		</script>
+	</body>
+</html>

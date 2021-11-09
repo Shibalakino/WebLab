@@ -1,0 +1,86 @@
+html {
+  font-family: Tahoma, sans-serif;
+}
+aside {
+  background-color: blue;
+  width: 30%;
+  height: 100%;
+}
+header.flex-container {
+  background-color: rgb(245, 200, 90);
+  height: 15vh;
+  justify-content: flex-start;
+}
+main {
+  height: 70vh;
+  flex-flow: row;
+}
+body {
+  margin: 0px;
+}
+
+.flex-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+.flex-item {
+  margin: 20px;
+  font-size: 20pt;
+}
+.flex-item#name {
+  width: 40%;
+  height: 70%;
+}
+.flex-container#info {
+  flex-flow: wrap;
+}
+/*.flex-container#skills {
+  /* put this just inside aside?
+  flex-flow: column;
+  height: 70%;
+}*/
+.flex-container#main-section {
+  flex-flow: column;
+  width: 70%;
+  height: 100%;
+  margin: 0px;
+}
+.flex-item#stats {
+  flex-flow: row;
+  background-color: brown;
+  width: 96%;
+  height: 30%;
+  margin: 10px;
+}
+.flex-container#picture-personnel {
+  flex-flow: row;
+  justify-content: space-between;
+  background-color: white;
+  width: 100%;
+  height: 70%;
+}
+.flex-container#pupen-picture {
+  background-color: white;
+  border: solid black 2px;
+  width: 100%;
+  height: 100%;
+}
+.flex-container#personnel {
+  flex-flow: column;
+  background-color: blue;
+  border: solid black 2px;
+  width: 100%;
+  height: 100%;
+}
+footer {
+  background-color: rgb(245, 200, 90);
+  height: 15vh;
+}
+#name {
+  background-color: white;
+}
+#pupen-picture img {
+  width: 100%;
+}
