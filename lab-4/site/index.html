@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ua">
+  <link rel="stylesheet" type="text/css" href="style.css" />
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lab</title>
+  </head>
+
+  <body>
+    <p
+      style="
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: rgb(35, 55, 228);
+        font-size: 30px;
+        margin: 0.5%;
+      "
+    >
+      Wanna show you a
+      <a href="JavaScript: alert('Everyone loves cats!')">kitty?</a>
+    </p>
+    <div id="btn" onclick="showKitty()">Yes!!!</div>
+    <script>
+      let cat = document.createElement("img");
+      cat.width = 500;
+
+      function showKitty() {
+        cat.src = "kitties\\" + Math.round(Math.random() * 10) + ".jpg";
+        cat.alt = cat.scr;
+        document.body.appendChild(cat);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" , href="lab-4-3-melkye.css" />
+    <link rel="stylesheet" , href="dropdown.css" />
+    <script src="script.js" async></script>
+    <title>Lab 4 task 3</title>
+  </head>
+  <body>
+    <header class="flex-container">
+      <section class="flex-item flex-container" id="name">
+        <div>Pupen Mazadupen</div>
+      </section>
+      <nav class="flex-item flex-container">
+        <a href="#" onclick="OpenMain()">Main</a>
+        <a href="#" onclick="OpenSpells()">Spells</a>
+        <a href="#" onclick="OpenStory()">Story</a>
+        <div class="dropdown flex-item">
+          <button class="dropbtn">Character</button>
+          <div class="dropdown-content">
+            <a href="#" onclick="OpenMain('Pupen Mazadupen')"
+              >Pupen Mazadupen</a
+            >
+            <a href="#" onclick="OpenMain('Florence Landier')">
+              Florence Landier
+            </a>
+            <a href="#" onclick="OpenMain('Nole Ksum')"> Nole Ksum </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="flex-container">
+      <aside class="flex-container">
+        <section class="flex-item flex-container" id="skills">
+          <div class="flex-item skill" id="strength">
+            <span>Strength: </span>
+            <span class="value" id="value-strength">17</span>
+          </div>
+          <div class="flex-item skill" id="dexterity">
+            <span>Dexterity: </span>
+            <span class="value" id="value-dexterity">18</span>
+          </div>
+          <div class="flex-item skill" id="constitution">
+            <span>Constitution: </span>
+            <span class="value" id="value-constitution">15</span>
+          </div>
+          <div class="flex-item skill" id="intelligence">
+            <span>Intelligence: </span>
+            <span class="value" id="value-intelligence">16</span>
+          </div>
+          <div class="flex-item skill" id="wisdom">
+            <span>Wisdom: </span>
+            <span class="value" id="value-wisdom">7</span>
+          </div>
+          <div class="flex-item skill" id="charisma">
+            <span>Charisma: </span>
+            <span class="value" id="value-charisma">14</span>
+          </div>
+        </section>
+      </aside>
+
+      <section class="flex-item flex-container" id="main-section">
+        <section class="flex-item flex-container" id="stats"></section>
+        <section class="flex-item flex-container" id="picture-personnel">
+          <section class="flex-item flex-container" id="character-picture">
+            <div class="flex-item"></div>
+          </section>
+          <section class="flex-item flex-container" id="personnel"></section>
+        </section>
+      </section>
+    </main>
+    <footer class="flex-container">
+      <div class="flex-item">&copy Melkye Inc. 2021</div>
+    </footer>
+  </body>
+</html>

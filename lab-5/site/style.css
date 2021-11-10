@@ -1,0 +1,82 @@
+body {
+	width: 80%;
+	margin: 20px auto;
+	background-color: #ccb2fc;
+	font-family: "Trebuchet MS", sans-serif;
+}
+
+.flex-container {
+	align-items: center;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+}
+.flex-item {
+	margin: 20px;
+	font-size: 20pt;
+}
+#tabs {
+	height: 80vh;
+}
+
+.flex-container.baby-animal-container {
+	width: 80vw;
+	height: 60vh;
+}
+
+.baby-animal-image {
+	width: 25vw;
+}
+.menu {
+	font-size: 20pt;
+}
+
+h2 {
+	text-align: center;
+}
+#photo-slider,
+#video-slider {
+	margin: auto;
+}
+#informer-container {
+	justify-content: space-between;
+}
+#informer-container > .flex-item {
+	font-size: 12pt;
+}
+
+.weather-wrapper {
+	background: skyblue;
+	padding: 40px 5%;
+	float: left;
+	color: white;
+	width: 25%;
+	max-width: 400px;
+	margin: auto;
+}
+strong {
+	color: steelblue;
+}
+
+#time-currency-container {
+	flex-direction: column;
+	margin: auto;
+}
+#currency-table {
+	font-size: 18pt;
+	background-color: rgb(81, 160, 224);
+}
+th {
+	text-align: left;
+}
+footer {
+	background-color: #9985be;
+	height: 100px;
+	margin: auto;
+	align-items: center;
+}
+
+a > img {
+	/*for images in footer*/
+	width: 60px;
+}
