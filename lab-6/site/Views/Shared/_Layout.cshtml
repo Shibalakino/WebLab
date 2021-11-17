@@ -1,0 +1,144 @@
+﻿@model GameListViewModel
+
+<!DOCTYPE html>
+<html lang="ua">
+<link rel="stylesheet" type="text/css" href="~/css/style.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game shop</title>
+
+</head>
+
+<body>
+    <div class="header">
+        <a href="#" class="header-item logo">
+            <img src="~/img/logo.png" alt="Login icont" height="60">
+        </a>
+        <div>
+            <a href="#" class="header-item support">
+                <img src="~/img/support.png" alt="Login icont" height="60">
+            </a>
+
+            <a href="#" class="header-item basket">
+                <img src="~/img/basket.png" alt="Login icont" height="60">
+            </a>
+
+            <a href="#" class="header-item login">
+                <img src="~/img/login.png" alt="Login icont" height="60">
+            </a>
+        </div>
+    </div>
+    <div>@RenderBody()</div>
+
+    <div class="main">
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-item">
+                    <a href="#">Про магазин</a>
+                    <a href="#">Мій профіль</a>
+                </div>
+                <div class="sidebar-item" style="padding-top: 15%; padding-bottom: 15%;">
+                    <a href="#">Всі ігри</a>
+                    <a href="#">Екшн</a>
+                    <a href="#">Стратегії</a>
+                    <a href="#">Гонки</a>
+                    <a href="#">Казуальні</a>
+                    <a href="#">Спорт</a>
+                    <a href="#">Пригоди</a>
+                </div>
+            </div>
+
+            <div class="sidebar-item">
+                <a href="#">Налаштування</a>
+                <a href="#">Підтримка</a>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="date">
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+                <link rel="stylesheet" href="/resources/demos/style.css">
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+                <script>
+                    $(function () {
+                        $("#datepicker").datepicker();
+                    });
+                </script>
+                <p>Date: <input type="text" id="datepicker"></p>
+
+            </div>
+
+            <div class="find">
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+                <script>
+                    $(function () {
+                        var availableTags = [
+                            "Екшн",
+                            "Гонки",
+                            "Стратегії",
+                            "Гонки",
+                            "Казауальні",
+                            "Спорт",
+                            "Пригоди",
+                        ];
+                        $("#tags").autocomplete({
+                            source: availableTags
+                        });
+                    });
+                </script>
+                <div class="ui-widget">
+                    <label for="tags">Tags: </label>
+                    <input id="tags">
+                </div>
+            </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+            <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+            <script>
+                $(function () {
+                    $("#dialog").dialog();
+                });
+            </script>
+
+            <div id="dialog" title="Admin">
+                <p>If you want some help - press this button:</p>
+                <button>press:)</button>
+            </div>
+
+            <div class="outputinput">
+                Your input: <input id="someText">
+            <button id="buttonin">Send on server</button>
+            <br />
+            Message was processed: <div id="result"></div>
+             <br />
+            Time: <div id="time"></div>
+            </div>
+            <script>
+
+            function out() {
+                var time = new Date().toLocaleTimeString();
+                var fname = document.getElementById('someText').value;
+                document.getElementById('result').innerHTML = fname;
+                document.getElementById('time').innerHTML = time;
+            }
+ 
+            document.getElementById('buttonin').addEventListener('click', out);
+            </script>
+            
+        </div>
+     </div>
+
+    <div class="footer">
+        <p>© 2021-2025 Game shop. Всі права захищені.</p>
+
+    </div>
+
+    </body>
+</html>

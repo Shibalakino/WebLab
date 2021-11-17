@@ -1,0 +1,92 @@
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    margin: 0px;
+}
+
+.header {
+    display: flex;
+    flex: 0 0 auto;
+    
+    background-color: #000000;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.5%;
+    padding-right: 1%;
+    margin: 0px;
+}
+.header a {
+    text-decoration: none;
+}
+
+.header-item {
+
+}
+.logo {
+    
+}
+.support {
+   
+}
+.basket {
+    
+}
+.login {
+    
+}
+
+.main {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: #ffc7c8;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    background-color: #363333;
+    justify-content: space-between;
+
+    padding: 1%;
+    margin: 0px;
+}
+.sidebar a {
+    text-decoration: none;
+
+    color: #ffc7c8;
+    font-size: 25px;
+    margin: 1%;
+}
+.sidebar-item {
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 7;
+}
+
+.footer {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+
+    background-color: #000000;
+    color: #a58c8d;
+    font-size: 12px;
+}
+.ma {
+    display: flex;
+    float: right;
+}
+.outputinput
+{
+    margin-top: 20px;
+}
