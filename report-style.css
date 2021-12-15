@@ -115,6 +115,8 @@
 }
 .materials {
 	/*float: inline-end;*/
+	display: flex;
+	flex-direction: column;
 	padding: 0px 20px 20px 20px;
 	font: 1.2rem/1.2 Arial, sans-serif;
 }
@@ -158,4 +160,8 @@ code {
 
 h3 {
 	text-align: center;
+}
+
+img {
+	margin: 5px;
 }

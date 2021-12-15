@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ComputerStore.Models.Computer>
+@{
+    ViewData["Title"] = "Ordered computers";
+    List<(string ClientName, string Address, string ContactPhone, string ComputerTitle)> ordersData
+        = (List<(string, string, string, string)>)ViewData["OrdersData"];
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ducks do computers</title>
+</head>
+<body>
+    <h3>Ordered Computers</h3>
+    <table style="width:80%">
+        <tr>
+            <td>Client name</td>
+            <td>Address</td>
+            <td>Contact phone</td>
+            <td>Computer</td>
+        </tr>
+        @foreach (var orderData in ordersData)
+        {
+            <tr>
+                <td>@orderData.ClientName</td>
+                <td>@orderData.Address</td>
+                <td>@orderData.ContactPhone</td>
+                <td>@orderData.ComputerTitle</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

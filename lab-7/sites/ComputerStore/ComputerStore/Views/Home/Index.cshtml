@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ComputerStore.Models.Computer>
+@{
+    ViewData["Title"] = "Available computers";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ducks do computers</title>
+</head>
+<body>
+    <h3>Available Computers</h3>
+    <table class="table-condensed" style="width:80%">
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Manufacturer</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+        @foreach (var computer in Model)
+        {
+            <tr>
+                <td>@computer.Title</td>
+                <td>@computer.Description</td>
+                <td>@computer.Manufacturer </td>
+                <td>@computer.Price</td>
+                <td><a href="~/Home/Buy/@computer.ID">Buy</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

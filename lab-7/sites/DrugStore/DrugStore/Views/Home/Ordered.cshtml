@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DrugStore.Models.Drug>
+@{
+    ViewData["Title"] = "Ordered drugs";
+    List<(string ClientName, string Address, string ContactPhone, string DrugTitle)> ordersData
+        = (List<(string, string, string, string)>)ViewData["OrdersData"];
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ducks do drugs</title>
+</head>
+<body>
+    <h3>Ordered Drugs</h3>
+    <table style="width:80%">
+        <tr>
+            <td>Client name</td>
+            <td>Address</td>
+            <td>Contact phone</td>
+            <td>Drug</td>
+        </tr>
+        @foreach (var orderData in ordersData)
+        {
+            <tr>
+                <td>@orderData.ClientName</td>
+                <td>@orderData.Address</td>
+                <td>@orderData.ContactPhone</td>
+                <td>@orderData.DrugTitle</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
