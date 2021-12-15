@@ -1,0 +1,8 @@
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.csproj.AssemblyReference.cache
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.AssemblyInfoInputs.cache
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.AssemblyInfo.cs
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.csproj.CoreCompileInputs.cache
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.MvcApplicationPartsAssemblyInfo.cache
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.RazorAssemblyInfo.cache
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.RazorAssemblyInfo.cs
+C:\Repos\WebLab\lab-6\site\obj\Debug\netcoreapp3.1\WebLab.GeneratedMSBuildEditorConfig.editorconfig
