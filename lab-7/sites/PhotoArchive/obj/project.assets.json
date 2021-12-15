@@ -5701,19 +5701,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\melky\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\КПИ\\Archive\\PhotoArchive\\PhotoArchive.csproj",
+      "projectUniqueName": "C:\\Repos\\WebLab\\lab-7\\sites\\PhotoArchive\\PhotoArchive.csproj",
       "projectName": "PhotoArchive",
-      "projectPath": "D:\\КПИ\\Archive\\PhotoArchive\\PhotoArchive.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\КПИ\\Archive\\PhotoArchive\\obj\\",
+      "projectPath": "C:\\Repos\\WebLab\\lab-7\\sites\\PhotoArchive\\PhotoArchive.csproj",
+      "packagesPath": "C:\\Users\\melky\\.nuget\\packages\\",
+      "outputPath": "C:\\Repos\\WebLab\\lab-7\\sites\\PhotoArchive\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\melky\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5762,7 +5762,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
