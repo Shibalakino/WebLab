@@ -71,7 +71,7 @@ body {*/
 /*}*/
 
 /*-----------------------~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-------------------------------------*/
-html {
+html { /*????*/
     height: 100%;
 }
 
@@ -86,8 +86,8 @@ header {
     display: flex;
     flex: 0 0 auto;
     background-color: black;
-    /*justify-content: space-between;*/ /*??*/
-    align-items: center;
+    justify-content: space-between; /*??*/
+     align-items: center;
     padding: 0.5%;
     padding-right: 1%;
     margin: 0px;
@@ -96,25 +96,15 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+}
+#logoutButton {
+    font-size: 22px;
 }
 
 header a {
     text-decoration: none;
-}
-
-.header-item {
-}
-
-.logo {
-}
-
-.support {
-}
-
-.basket {
-}
-
-.login {
 }
 
 main {
@@ -124,12 +114,12 @@ main {
 }
 
 sidebar {
-    width: 30%;
+    width: 15%;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    background-color: #363333;
-    justify-content: space-between;
+/*    flex: 1;*/
+    background-color: black;
+/*    justify-content: space-between;*/
     padding: 1%;
     margin: 0px;
 }
@@ -141,15 +131,6 @@ sidebar a {
     margin: 1%;
 }
 
-.sidebar-item {
-    display: flex;
-    flex-direction: column;
-}
-
-/*.content {
-    flex: 7;
-}*/
-
 footer {
     display: flex;
     flex: 0 0 auto;
@@ -158,4 +139,145 @@ footer {
     color: #a58c8d;
     font-size: 12px;
 }
+/*sidebar*/ /*make it not stretch to the bottom*/
+/*{
+	margin-top: 4%;
+	background: khaki;
+	border: 2px solid khaki;
+	padding: 2%; 
+	height: 400px;
+	margin-left: 2%;
+	border-radius: 20px;
+}*/
 
+/*sidebar li{
+    list-style-type: none;
+    margin-left: 7%;
+    line-height: 2.3;
+}*/
+
+sidebar a:hover
+{
+	color: #E30B5C;
+}
+
+.game-card {
+    /*    padding: 2%;
+    border: 3px solid khaki;
+    width: 50%;
+    background: khaki;
+    border-radius: 15px;
+    margin: 4% 2% 2% 0;*/
+    padding: 1%;
+    border: 3px solid khaki;
+    background: khaki;
+    border-radius: 15px;
+    margin: 2% 1%;
+}
+.game-card-container {
+    margin: 1% 0;
+}
+.game-cards-layout {
+    width: 100%;
+    padding: 1% 2%;
+}
+
+.game-cards-layout img {
+    width: 100%;
+    border-radius: 3%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.game-cards-layout p {
+    width: 100%;
+}
+
+.title-category-buybutton {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-cards-layout h3 {
+    margin: 2% 0 0 0;
+    padding: 0 auto;
+    text-align: center;
+}
+
+/*.card-3 {
+    margin: 0 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+/*.buyForm {
+    width: 100%;
+    height: 35px;
+}*/
+button {
+    background: black;
+    color: khaki;
+    font-weight: 700;
+    border-radius: 5%;
+    border: 2px solid black;
+    width: 100;
+    height: 35px;
+}
+.game-cards-layout button:hover {
+    transition: all .2s linear;
+    box-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+footer {
+    background: black;
+    padding: 2%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+sidebar, .game-cards-layout {
+    float: left;
+}
+header, footer {
+    clear: left;
+}
+#footer-copyright {
+
+}
+#languages {
+
+}
+
+/*----------------*/
+.card-header-tabs {
+    border: 0;
+    justify-content: space-around;
+
+}
+.nav-item {
+    width: 50%;
+    text-align: center;
+}
+.login-logout-tab {
+    background-color: #ffc7c8;
+    border: 0;
+}
+
+.login-form-icon {
+    text-align-last: center;
+}
+
+.register-login-button {
+    width: 100%;
+    margin: 2% 0;
+}
+/*---------------*/
+#purchase-result-message {
+    color: white;
+    margin: auto;
+    font-size: 2em;
+}

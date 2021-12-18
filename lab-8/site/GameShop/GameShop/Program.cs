@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using GameShop.Models;
+using GameShop.Data;
 
 namespace GameShop
 {
@@ -18,9 +18,8 @@ namespace GameShop
 
                 try
                 {
-                    var context = services.GetRequiredService<GameContext>();
-                    // TODO: add data
-                    // SampleData.Initialize(context);
+                    var gameContext = services.GetRequiredService<GameContext>();
+                     SampleData.Initialize(gameContext);
                 }
                 catch (Exception ex)
                 {

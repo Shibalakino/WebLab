@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GameShop.Areas.Identity.Data
+
+@inject SignInManager<GameShopUser> SignInManager
+@inject UserManager<GameShopUser> UserManager
+
+
+<a asp-area="" asp-controller="Home" asp-action="Index" asp-route-userName="">
+    <img src="~/img/logo.png" alt="Logo icon" height="60">
+</a>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-light">Hello, @UserManager.GetUserName(User)!</div>
+    <div class="row">
+        <a id="user-games" class="col nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index" asp-route-userName=@UserManager.GetUserName(User) title="My games">My games</a>
+        <form id="logoutForm" class="col form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logoutButton" type="submit" class="nav-link btn btn-link text-light">Logout</button>
+        </form>
+    </div>
+}
+else
+{
+    <a href="/Identity/Account/Login">
+        <img src="~/img/login.png" alt="Login icon" height="60">
+    </a>
+
+}

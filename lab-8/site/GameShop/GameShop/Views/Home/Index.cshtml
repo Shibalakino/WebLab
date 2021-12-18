@@ -1,26 +1,102 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<!DOCTYPE html>
-<html>
+﻿@using Microsoft.AspNetCore.Identity
+@using GameShop.Areas.Identity.Data
 
-<body>
-    <h3>Available Drugs</h3>
-    <table class="table-condensed" style="width:80%">
-        <tr>
-            <td>Title</td>
-            <td>Description</td>
-            <td>Manufacturer</td>
-            <td>Price</td>
-            <td></td>
-        </tr>
-            <tr>
-                <td>drug.Title</td>
-                <td>drug.Description</td>
-                <td>drug.Manufacturer </td>
-                <td>drug.Price</td>
-                <td>href=~/Home/Buy/drug.ID">Buy></td>
-            </tr>
-    </table>
-</body>
-</html>
+@inject SignInManager<GameShopUser> SignInManager
+@inject UserManager<GameShopUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+
+    var categories = (List<Category>)ViewData["Categories"];
+    List<(string Title, List<Category> Categories, string Description, double Price, string ImageLink)> games
+        = (List<(string, List<Category>, string, double, string)>)ViewData["Games"];
+}
+<sidebar>
+    @{
+        string routeUrlWithoutLastPart = "";
+        string[] subs = Url.RouteUrl(ViewContext.RouteData.Values).Split('/');
+        for (int i = 1; i < subs.Length - 1; i++)
+        {
+            routeUrlWithoutLastPart += "/" + subs[i];
+        }
+    }
+    @if (SignInManager.IsSignedIn(User)
+    && Url.RouteUrl(ViewContext.RouteData.Values) != "/Home/Index"
+    && routeUrlWithoutLastPart != "/Home/Index/Shop"
+   )
+    {
+        <a href="~/Home/Index/@UserManager.GetUserName(User)/AllGames">Всі ігри @UserManager.GetUserName(User)</a>
+        @foreach (var cat in categories)
+        {
+            <a href="~/Home/Index/@UserManager.GetUserName(User)/@cat.Name">@cat.Name</a>
+        }
+    }
+    else
+    {
+        <a href="~/Home/Index/Shop/AllGames">Всі ігри</a>
+        @foreach (var cat in categories)
+        {
+            <a href="~/Home/Index/Shop/@cat.Name">@cat.Name</a>
+        }
+    }
+</sidebar>
+<div class="game-cards-layout container">
+    <div class="row row-cols-4">
+        @foreach (var game in games)
+        {
+            <div class="col game-card-container">
+                <div class="game-card card h-100">
+                    <img src="@game.ImageLink" class="card-img-top" alt="@game.Title image">
+                    <div class="card-body">
+                        <div class="title-category-buybutton">
+                            <div class="title-category">
+                                <h5 class="card-title">@game.Title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    @foreach (var cat in game.Categories)
+                                    {
+                                        <text>@cat.Name </text>
+                                    }
+                                </h6>
+                            </div>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <form class="buyForm" asp-controller="Home" asp-action="Buy">
+                                    <input type="hidden" value="@game.Title" name="gameTitle" />
+                                    <input type="hidden" value="@UserManager.GetUserName(User)" name="userName" />
+                                    <button type="submit" class="buybutton">
+                                        @if (game.Price == 0)
+                                        {
+                                            <text>Free</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@game.Price₴</text>
+                                        }
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button type="submit">
+                                    @if (game.Price == 0)
+                                    {
+                                        <text>Free</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@game.Price₴</text>
+                                    }
+                                </button>
+                            }
+                        </div>
+                        <p class="card-text">@game.Description</p>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
