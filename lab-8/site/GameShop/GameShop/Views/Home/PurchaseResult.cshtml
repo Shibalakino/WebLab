@@ -1,7 +1,9 @@
 ﻿
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Purchase result";
+    ViewData["Title"] = localizer["Purchase result"];
 }
 
 <div id="purchase-result-message">

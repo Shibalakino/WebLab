@@ -1,6 +1,7 @@
-﻿<!DOCTYPE html>
-<html lang="ua">
-@*how this should be translated?*@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<!DOCTYPE html>
+<html >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,19 +19,20 @@
     </header>
 
     <main>
-            @RenderBody()
+        @RenderBody()
     </main>
 
     <footer>
         <h3>Game Shop</h3>
         <div id="footer-copyright">
-            <h5>	&copy; All rights reserved 2021</h5>
+            <h5>	&copy; @localizer["All rights reserved"] 2021</h5>
         </div>
-        <div id="languages">
-            <a href="#"><img src="~/img/UA.svg" alt="UA"></a>
-            <a href="#"><img src="~/img/UK.svg" alt="UK"></a>
-            <a href="#"><img src="~/img/RU.svg" alt="RU"></a>
-        </div>
+        <partial name="_Culture" />
+        @*<div id="languages">
+                <a href="#"><img src="~/img/UA.svg" alt="UA"></a>
+                <a href="#"><img src="~/img/UK.svg" alt="UK"></a>
+                <a href="#"><img src="~/img/RU.svg" alt="RU"></a>
+            </div>*@
     </footer>
     @RenderSection("Scripts", required: false)
 </body>

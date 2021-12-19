@@ -7,6 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 using GameShop.Data;
 using GameShop.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace GameShop
 {
@@ -21,20 +26,26 @@ namespace GameShop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //string connection = Configuration.GetConnectionString("GameShopGamesContextConnection");
-            //services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
+            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
+            services.Configure<RequestLocalizationOptions>(
+                opt =>
+                {
+                    var supportedCultures = new List<CultureInfo>
+                    {
+                        new CultureInfo("en"),
+                        new CultureInfo("de"),
+                        new CultureInfo("uk-UA"),
+                    };
+                    opt.DefaultRequestCulture = new RequestCulture("en");
+                    opt.SupportedCultures = supportedCultures;
+                    opt.SupportedUICultures = supportedCultures;
+                });
 
-            //connection = Configuration.GetConnectionString("GameShopUsersContextConnection");
-            //services.AddDbContext<GameShopUserContext>(options => options.UseSqlServer(connection));
-
-            //string connection = Configuration.GetConnectionString("GameShopConnection");
-            //services.AddDbContext<GameShopUserContext>(options => options.UseSqlServer(connection));
 
             string connection = Configuration.GetConnectionString("GameShopConnection");
             services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
-
-            //services.AddMvc();
-            //services.AddIdentityCore<GameShopUser>().AddEntityFrameworkStores<GameContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -50,6 +61,13 @@ namespace GameShop
 
             app.UseAuthentication();
             app.UseAuthorization(); //??
+
+            //var supportedCultures = new[] { "en", "ua", "ru" };
+            //var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+            //    .AddSupportedCultures(supportedCultures)
+            //    .AddSupportedUICultures(supportedCultures);
+            //app.UseRequestLocalization(localizationOptions);
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
             app.UseEndpoints(endpoints =>
             {

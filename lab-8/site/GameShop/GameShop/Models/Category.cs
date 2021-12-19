@@ -8,8 +8,10 @@ namespace GameShop.Models
     public class Category
     {
         public int ID { set; get; }
-        public string Name { set; get; } //CategoryName { set; get; }
-        //public string Desc { set; get; }
+        public string Name { set; get; }
+        public string NameDE { set; get; }
+        public string NameUA { set; get; }
+
         public List<Game> Games { set; get; }
     }
 }

@@ -319,6 +319,17 @@
         "runtime": {
           "GameShop.dll": {}
         },
+        "resources": {
+          "de/GameShop.resources.dll": {
+            "locale": "de"
+          },
+          "en/GameShop.resources.dll": {
+            "locale": "en"
+          },
+          "uk-UA/GameShop.resources.dll": {
+            "locale": "uk-UA"
+          }
+        },
         "compile": {
           "GameShop.dll": {}
         }

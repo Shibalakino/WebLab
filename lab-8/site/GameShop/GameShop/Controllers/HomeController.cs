@@ -1,8 +1,11 @@
 ﻿using GameShop.Areas.Identity.Data;
 using GameShop.Data;
 using GameShop.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,78 +18,118 @@ namespace GameShop.Controllers
     public class HomeController : Controller
     {
         private readonly GameContext _gameContext;
-        public HomeController(GameContext context)
+        private readonly IHtmlLocalizer<HomeController> _localizer;
+        public HomeController(GameContext context, IHtmlLocalizer<HomeController> localizer)
         {
             _gameContext = context;
+            _localizer = localizer;
         }
         [Route("")]
         [Route("~/Home")]
         [Route("~/Home/Index")]
         [Route("~/Home/Index/{userName?}")]
         [Route("~/Home/Index/{userName?}/{categoryName?}")]
-        public IActionResult Index(string userName, string categoryName)
+        public IActionResult Index(string userName, string categoryName, string lang)
         {
-            var gamesAnonymous = (categoryName == null || categoryName == "AllGames")
-                ?
-                 (from g in _gameContext.Games
-                  select new
-                  {
-                      Title = g.Title,
-                      Categories = g.Categories,
-                      Description = g.Description,
-                      Price = g.Price,
-                      ImageLink = g.ImageLink
-                  }).ToList()
-                :
-                 (from g in _gameContext.Games
-                  where g.Categories.Any(c => c.Name == categoryName)
-                  select new
-                  {
-                      Title = g.Title,
-                      Categories = g.Categories,
-                      Description = g.Description,
-                      Price = g.Price,
-                      ImageLink = g.ImageLink
-                  }).ToList();
-            if (userName != null && userName != "Shop")
+            if (lang == null)
+                lang = "en";
+            else if (lang == "uk-UA")
+                lang = "ua";
+
+            List<(string Title, List<Category> Categories, string Description, double Price, string ImageLink)> games = null;
+            if (userName == null || userName == "Shop")
             {
-                gamesAnonymous = (categoryName == null || categoryName == "AllGames")
-                ?
-                 (from g in _gameContext.Games
-                  where g.GameShopUsers.Any(u => u.UserName == userName)
-                  select new
-                  {
-                      Title = g.Title,
-                      Categories = g.Categories,
-                      Description = g.Description,
-                      Price = g.Price,
-                      ImageLink = g.ImageLink
-                  }).ToList()
-                :
-                 (from g in _gameContext.Games
-                  where g.Categories.Any(c => c.Name == categoryName)
-                        && g.GameShopUsers.Any(u => u.UserName == userName)
-                  select new
-                  {
-                      Title = g.Title,
-                      Categories = g.Categories,
-                      Description = g.Description,
-                      Price = g.Price,
-                      ImageLink = g.ImageLink
-                  }).ToList();
+                if (categoryName == null || categoryName == "AllGames")
+                {
+                    games = _gameContext.Games
+                         .Select(g => new
+                         {
+                             g.Title,
+                             g.Categories,
+                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Price,
+                             g.ImageLink
+                          })
+                        .AsEnumerable()
+                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .ToList();
+                }
+                else
+                {
+                    games = _gameContext.Games
+                         .Select(g => new
+                         {
+                             g.Title,
+                             g.Categories,
+                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Price,
+                             g.ImageLink
+                         })
+                        .Where(g => g.Categories.Any(c => c.Name == categoryName))
+                        .AsEnumerable()
+                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .ToList();
+                }
             }
-            List<(string Title, List<Category> Categories, string Description, double Price, string ImageLink)> games
-                = new List<(string, List<Category>, string, double, string)>();
-            foreach (var g in gamesAnonymous)
+            else
             {
-                games.Add((g.Title, g.Categories, g.Description, g.Price, g.ImageLink));
+                if (categoryName == null || categoryName == "AllGames")
+                {
+                    //gamesN = _gameContext.GameShopUsers.Single(u => u.UserName == userName).Games;
+                    games = _gameContext.Games
+                            .Where(g => g.GameShopUsers.Any(u => u.UserName == userName))
+                            .Select(g => new
+                            {
+                                g.Title,
+                                g.Categories,
+                                Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                                g.Price,
+                                g.ImageLink
+                            })
+                            .AsEnumerable()
+                            .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                            .ToList();
+                }
+                else
+                {
+                    games = _gameContext.Games
+                         .Where(g => g.GameShopUsers.Any(u => u.UserName == userName)
+                            && g.Categories.Any(c => c.Name == categoryName))
+                         .Select(g => new
+                         {
+                             g.Title,
+                             g.Categories,
+                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Price,
+                             g.ImageLink
+                         })
+                        .AsEnumerable()
+                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .ToList();
+                }
             }
             ViewData["Games"] = games;
-            ViewData["Categories"] = _gameContext.Categories.ToList();
-            //ViewData["Games"] = _gameContext.Games.Where(g => g.Categories.Any(c => c.Name == categoryName)).ToList();
+
+            List<string> categoryNames = new List<string>();
+            foreach (var cat in _gameContext.Categories)
+            {
+                if (lang == "en")
+                {
+                    categoryNames.Add(cat.Name);
+                }
+                else if (lang == "de")
+                {
+                    categoryNames.Add(cat.NameDE);
+                }
+                else
+                {
+                    categoryNames.Add(cat.NameUA);
+                }
+            }
+            ViewData["CategoryNames"] = categoryNames;
             return View();
         }
-        //[Route("~/Home/Index/{userName?}/{categoryName?}")]
+        [Route("~/Home/Buy/{userName?}/{gameTitle?}")]
         public IActionResult Buy(string userName, string gameTitle)
         {
             if (
@@ -106,13 +149,24 @@ namespace GameShop.Controllers
                         .Add(_gameContext.Games.First(g => g.Title == gameTitle));
                 }
                 _gameContext.SaveChanges();
-                ViewData["PurchaseResult"] = "Purchase successful!";
+                ViewData["PurchaseResult"] = _localizer["Purchase successful!"];
             }
             else
             {
-                ViewData["PurchaseResult"] = "You already own " + gameTitle + "!";
+                ViewData["PurchaseResult"] = _localizer["You already own this game!"];
             }
             return View("PurchaseResult");
+        }
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions {Expires = DateTimeOffset.Now.AddDays(30) });
+            int index = returnUrl.IndexOf("?");
+            if (index > 0)
+                returnUrl = returnUrl.Substring(0, index);
+            return LocalRedirect(returnUrl);
         }
     }
 }

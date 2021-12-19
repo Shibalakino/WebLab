@@ -1,13 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using GameShop.Areas.Identity.Data
 
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @inject SignInManager<GameShopUser> SignInManager
 @inject UserManager<GameShopUser> UserManager
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = localizer["Home page"];
 
-    var categories = (List<Category>)ViewData["Categories"];
+    var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+
+    var categoryNames = (List<string>)ViewData["CategoryNames"];
     List<(string Title, List<Category> Categories, string Description, double Price, string ImageLink)> games
         = (List<(string, List<Category>, string, double, string)>)ViewData["Games"];
 }
@@ -21,22 +25,42 @@
         }
     }
     @if (SignInManager.IsSignedIn(User)
-    && Url.RouteUrl(ViewContext.RouteData.Values) != "/Home/Index"
-    && routeUrlWithoutLastPart != "/Home/Index/Shop"
-   )
+&& Url.RouteUrl(ViewContext.RouteData.Values) != "/Home/Index"
+&& routeUrlWithoutLastPart != "/Home/Index/Shop"
+)
     {
-        <a href="~/Home/Index/@UserManager.GetUserName(User)/AllGames">Всі ігри @UserManager.GetUserName(User)</a>
-        @foreach (var cat in categories)
+        @*<a href="~/Home/Index/@UserManager.GetUserName(User)/AllGames" asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer["All games"] @UserManager.GetUserName(User)</a>*@
+        <a asp-controller="Home"
+           asp-action="Index"
+           asp-route-userName="@UserManager.GetUserName(User)"
+           asp-route-categoryName="AllGames"
+           asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer["All games"] @UserManager.GetUserName(User)</a>
+        @foreach (var categoryName in categoryNames)
         {
-            <a href="~/Home/Index/@UserManager.GetUserName(User)/@cat.Name">@cat.Name</a>
+            <a asp-controller="Home"
+               asp-action="Index"
+               asp-route-userName="@UserManager.GetUserName(User)"
+               asp-route-categoryName="@categoryName"
+               asp-route-lang="@culture.RequestCulture.UICulture.Name">@categoryName</a>
+            @*<a href="~/Home/Index/@UserManager.GetUserName(User)/@cat.Name" asp-route-lang="@culture.RequestCulture.UICulture.Name">@cat.Name</a>*@
         }
     }
     else
     {
-        <a href="~/Home/Index/Shop/AllGames">Всі ігри</a>
-        @foreach (var cat in categories)
+        <a asp-controller="Home"
+           asp-action="Index"
+           asp-route-userName="Shop"
+           asp-route-categoryName="AllGames"
+           asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer["All games"]</a>
+        @*<a href="~/Home/Index/Shop/AllGames" >@localizer["All games"]</a>*@
+        @foreach (var categoryName in categoryNames)
         {
-            <a href="~/Home/Index/Shop/@cat.Name">@cat.Name</a>
+            <a asp-controller="Home"
+               asp-action="Index"
+               asp-route-userName="Shop"
+               asp-route-categoryName="@categoryName"
+               asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer[@categoryName]</a>
+            @*<a href="~/Home/Index/Shop/@cat.Name" asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer[@cat.Name]</a>*@
         }
     }
 </sidebar>
@@ -54,19 +78,35 @@
                                 <h6 class="card-subtitle mb-2 text-muted">
                                     @foreach (var cat in game.Categories)
                                     {
-                                        <text>@cat.Name </text>
+                                        if (culture.RequestCulture.UICulture.Name == "en")
+                                        {
+                                            <text>@cat.Name </text>
+                                        }
+                                        else if (culture.RequestCulture.UICulture.Name == "de")
+                                        {
+                                            <text>@cat.NameDE </text>
+                                        }
+                                        else
+                                        {
+                                            <text>@cat.NameUA </text>
+                                        }
                                     }
                                 </h6>
                             </div>
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <form class="buyForm" asp-controller="Home" asp-action="Buy">
-                                    <input type="hidden" value="@game.Title" name="gameTitle" />
-                                    <input type="hidden" value="@UserManager.GetUserName(User)" name="userName" />
+                                <form class="buyForm"
+                                      asp-controller="Home"
+                                      asp-action="Buy"
+                                      asp-route-lang="@culture.RequestCulture.UICulture.Name"
+                                      asp-route-userName ="@UserManager.GetUserName(User)"
+                                      asp-route-gameTitle="@game.Title">
+                                    @*<input type="hidden" value="@game.Title" name="gameTitle" />
+                                    <input type="hidden" value="@UserManager.GetUserName(User)" name="userName" />*@
                                     <button type="submit" class="buybutton">
                                         @if (game.Price == 0)
                                         {
-                                            <text>Free</text>
+                                            <text>@localizer["Free"]</text>
                                         }
                                         else
                                         {
@@ -80,7 +120,7 @@
                                 <button type="submit">
                                     @if (game.Price == 0)
                                     {
-                                        <text>Free</text>
+                                        <text>@localizer["Free"]</text>
                                     }
                                     else
                                     {

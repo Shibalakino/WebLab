@@ -1,6 +1,8 @@
 ﻿@page
 @model LoginModel
 
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
     ViewData["Title"] = "Log in";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
@@ -14,18 +16,19 @@
         <form id="account" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.NickName"></label>
+                @localizer["NickName"]
                 <input asp-for="Input.NickName" class="form-control" />
                 <span asp-validation-for="Input.NickName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Password"></label>
+                @localizer["Password"]
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
+            @*TODO: return the "remember me checkbox"*@
             <div class="form-group">
-                <button type="submit" class="register-login-button btn btn-primary btn-block" >Log in</button>
-            </div>
+                <button type="submit" class="register-login-button btn btn-primary btn-block">@localizer["Log in"]</button>
+</div>
         </form>
     </section>
 </div>
