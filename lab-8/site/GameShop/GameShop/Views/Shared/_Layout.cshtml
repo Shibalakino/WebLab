@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GameShop</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
-    @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
@@ -25,14 +24,9 @@
     <footer>
         <h3>Game Shop</h3>
         <div id="footer-copyright">
-            <h5>	&copy; @localizer["All rights reserved"] 2021</h5>
+            <h5>&copy; @localizer["All rights reserved"] 2021</h5>
         </div>
         <partial name="_Culture" />
-        @*<div id="languages">
-                <a href="#"><img src="~/img/UA.svg" alt="UA"></a>
-                <a href="#"><img src="~/img/UK.svg" alt="UK"></a>
-                <a href="#"><img src="~/img/RU.svg" alt="RU"></a>
-            </div>*@
     </footer>
     @RenderSection("Scripts", required: false)
 </body>

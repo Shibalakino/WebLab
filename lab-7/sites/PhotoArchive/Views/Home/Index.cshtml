@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PhotoArchive.Models.Photo>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <link href="~/css/style.css" rel="stylesheet" type="text/css"/>
+    <title>Архів фото</title>
+</head>
+<body>
+    @foreach (var photo in Model)
+    {
+        <div class="pic-box">
+            <h2>@photo.Name @photo.Year</h2>
+            <img src="@photo.Ref" alt="myImagetitle" width=700/>
+            <span style="font-size: 30px; color: indigo; margin: 10px;">@photo.Desc</span>
+        </div>
+    }
+    <a class="btn" href="~/Home/AddPhoto">Додати фото</a>
+</body>
+</html>

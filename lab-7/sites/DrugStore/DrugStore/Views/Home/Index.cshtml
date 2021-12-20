@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DrugStore.Models.Drug>
+@{
+    ViewData["Title"] = "Available drugs";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ducks do drugs</title>
+</head>
+<body>
+    <h3>Available Drugs</h3>
+    <table class="table-condensed" style="width:80%">
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Manufacturer</td>
+            <td>Price</td>
+            <td></td>
+        </tr>
+        @foreach (var drug in Model)
+        {
+            <tr>
+                <td>@drug.Title</td>
+                <td>@drug.Description</td>
+                <td>@drug.Manufacturer </td>
+                <td>@drug.Price</td>
+                <td><a href="~/Home/Buy/@drug.ID">Buy</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

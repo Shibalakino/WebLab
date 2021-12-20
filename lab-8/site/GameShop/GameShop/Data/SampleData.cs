@@ -7,7 +7,7 @@ using GameShop.Models;
 
 namespace GameShop.Data
 {
-    public class SampleData
+    public static class SampleData
     {
         public static void Initialize(GameContext context)
         {

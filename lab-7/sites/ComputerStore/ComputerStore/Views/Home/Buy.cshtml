@@ -1,0 +1,46 @@
+﻿@model List<ComputerStore.Models.Computer>
+@{
+    ViewData["Title"] = "Order creation";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchase</title>
+</head>
+<body>
+    <div>
+        <h3>Purchase form</h3>
+        <p>Please fill in the form:</p>
+        <form method="post" class="form-horizontal" role="form">
+            <input type="hidden" value="@ViewBag.Computers.Title" name="computer.Title" />
+            <input type="hidden" value="@ViewBag.Computers.Description" name="computer.Description" />
+            <input type="hidden" value="@ViewBag.Computers.Manufacturer" name="computer.Manufacturer" />
+            <input type="hidden" value="@ViewBag.Computers.Price" name="computer.Price" />
+            <div class="form-group">
+                <label for="Name" class="control-label">Name:</label>
+                <div class="col-md-4">
+                    <input type="text" name="ClientName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Address" class="control-label">Address:</label>
+                <div class="col-md-4">
+                    <input type="text" name="Address" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ContactPhone" class="control-label">ContactPhone:</label>
+                <div class="col-md-4">
+                    <input type="text" name="ContactPhone" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Send" />
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -36,7 +36,15 @@ namespace GameShop.Controllers
             else if (lang == "uk-UA")
                 lang = "ua";
 
-            List<(string Title, List<Category> Categories, string Description, double Price, string ImageLink)> games = null;
+            List<(
+                string Title,
+                List<Category> Categories,
+                string Description,
+                string DescriptionDE,
+                string DescriptionUA,
+                double Price,
+                string ImageLink
+                )> games = null;
             if (userName == null || userName == "Shop")
             {
                 if (categoryName == null || categoryName == "AllGames")
@@ -46,12 +54,15 @@ namespace GameShop.Controllers
                          {
                              g.Title,
                              g.Categories,
-                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Description,
+                             g.DescriptionDE,
+                             g.DescriptionUA,
+                             //Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
                              g.Price,
                              g.ImageLink
                           })
                         .AsEnumerable()
-                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .Select(g => (g.Title, g.Categories, g.Description, g.DescriptionDE, g.DescriptionUA, g.Price, g.ImageLink))
                         .ToList();
                 }
                 else
@@ -61,13 +72,15 @@ namespace GameShop.Controllers
                          {
                              g.Title,
                              g.Categories,
-                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Description,
+                             g.DescriptionDE,
+                             g.DescriptionUA,
                              g.Price,
                              g.ImageLink
                          })
                         .Where(g => g.Categories.Any(c => c.Name == categoryName))
                         .AsEnumerable()
-                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .Select(g => (g.Title, g.Categories, g.Description, g.DescriptionDE, g.DescriptionUA, g.Price, g.ImageLink))
                         .ToList();
                 }
             }
@@ -75,19 +88,20 @@ namespace GameShop.Controllers
             {
                 if (categoryName == null || categoryName == "AllGames")
                 {
-                    //gamesN = _gameContext.GameShopUsers.Single(u => u.UserName == userName).Games;
                     games = _gameContext.Games
                             .Where(g => g.GameShopUsers.Any(u => u.UserName == userName))
                             .Select(g => new
                             {
                                 g.Title,
                                 g.Categories,
-                                Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                                g.Description,
+                                g.DescriptionDE,
+                                g.DescriptionUA,
                                 g.Price,
                                 g.ImageLink
                             })
                             .AsEnumerable()
-                            .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                            .Select(g => (g.Title, g.Categories, g.Description, g.DescriptionDE, g.DescriptionUA, g.Price, g.ImageLink))
                             .ToList();
                 }
                 else
@@ -99,34 +113,19 @@ namespace GameShop.Controllers
                          {
                              g.Title,
                              g.Categories,
-                             Description = (lang == "en") ? g.Description : (lang == "de") ? g.DescriptionDE : g.DescriptionUA,
+                             g.Description,
+                             g.DescriptionDE,
+                             g.DescriptionUA,
                              g.Price,
                              g.ImageLink
                          })
                         .AsEnumerable()
-                        .Select(g => (g.Title, g.Categories, g.Description, g.Price, g.ImageLink))
+                        .Select(g => (g.Title, g.Categories, g.Description, g.DescriptionDE, g.DescriptionUA, g.Price, g.ImageLink))
                         .ToList();
                 }
             }
             ViewData["Games"] = games;
-
-            List<string> categoryNames = new List<string>();
-            foreach (var cat in _gameContext.Categories)
-            {
-                if (lang == "en")
-                {
-                    categoryNames.Add(cat.Name);
-                }
-                else if (lang == "de")
-                {
-                    categoryNames.Add(cat.NameDE);
-                }
-                else
-                {
-                    categoryNames.Add(cat.NameUA);
-                }
-            }
-            ViewData["CategoryNames"] = categoryNames;
+            ViewData["Categories"] = _gameContext.Categories.ToList();
             return View();
         }
         [Route("~/Home/Buy/{userName?}/{gameTitle?}")]

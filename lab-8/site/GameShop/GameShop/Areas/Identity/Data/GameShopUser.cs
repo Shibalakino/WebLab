@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GameShop.Models; //
+using GameShop.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace GameShop.Areas.Identity.Data
 {
-    // Add profile data for application users by adding properties to the GameShopUser class
     public class GameShopUser : IdentityUser
     {
         [PersonalData]
@@ -16,6 +15,6 @@ namespace GameShop.Areas.Identity.Data
         public string LastName { get; set; }
         public string NickName { get; set; }
 
-        public List<Game> Games { get; set; } //
+        public List<Game> Games { get; set; } 
     }
 }

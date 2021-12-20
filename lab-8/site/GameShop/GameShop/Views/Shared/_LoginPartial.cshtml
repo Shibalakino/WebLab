@@ -6,9 +6,16 @@
 @inject SignInManager<GameShopUser> SignInManager
 @inject UserManager<GameShopUser> UserManager
 
+@{ 
+    var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+}
 
-<a asp-area="" asp-controller="Home" asp-action="Index" asp-route-userName="">
-    <img src="~/img/logo.png" alt="Logo icon" height="60">
+<a asp-controller="Home"
+   asp-action="Index"
+   asp-route-userName=@null
+   asp-route-categoryName="AllGames"
+   asp-route-lang="@culture.RequestCulture.UICulture.Name">
+   <img src="~/img/logo.png" alt="Logo icon" height="60">
 </a>
 @if (SignInManager.IsSignedIn(User))
 {
@@ -22,7 +29,7 @@
 }
 else
 {
-    <a href="/Identity/Account/Login">
+    <a  href="/Identity/Account/Login">
         <img src="~/img/login.png" alt="Login icon" height="60">
     </a>
 

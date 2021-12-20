@@ -16,9 +16,8 @@ namespace GameShop.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<GameShopUserContext>(options =>
+                services.AddDbContext<GameContext>(options =>
                     options.UseSqlServer(
-                        //context.Configuration.GetConnectionString("GameShopUsersContextConnection")));
                         context.Configuration.GetConnectionString("GameShopConnection")));
 
                 services.AddDefaultIdentity<GameShopUser>(options => {
@@ -27,7 +26,6 @@ namespace GameShop.Areas.Identity
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     })
-                    //.AddEntityFrameworkStores<GameShopUserContext>();
                     .AddEntityFrameworkStores<GameContext>();
             });
         }

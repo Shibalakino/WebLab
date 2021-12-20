@@ -132,7 +132,7 @@ main {
 aside {
 	float: left;
 	width: 31%;
-	position: fixed;
+	/* position: fixed; */
 	top: 20px;
 }
 

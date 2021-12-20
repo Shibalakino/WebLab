@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Додавання фото</title>
+</head>
+<body>
+    <div>
+        <h3>Форма додавання фото</h3>
+        <p>Для додавання фото заповніть наступні поля:</p>
+        <form method="post">
+            <table>
+                <tr>
+                    <td>Назва:</td>
+                    <td><input type="text" name="name" /> </td>
+                </tr>
+                <tr>
+                    <td>Посилання:</td>
+                    <td><input type="text" name="Ref" /></td>
+                </tr>
+                <tr>
+                    <td>Опис:</td>
+                    <td><input type="text" name="desc" /></td>
+                </tr>
+                <tr>
+                    <td>Рік:</td>
+                    <td><input type="number" name="year" /></td>
+                </tr>
+                <tr>
+                    <td>Автор ID:</td>
+                    <td><input type="number" name="authorId" /></td>
+                </tr>
+                <tr><td><input type="submit" value="Додати" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
