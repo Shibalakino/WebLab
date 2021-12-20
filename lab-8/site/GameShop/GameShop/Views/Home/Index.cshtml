@@ -1,0 +1,177 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GameShop.Areas.Identity.Data
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@inject SignInManager<GameShopUser> SignInManager
+@inject UserManager<GameShopUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = localizer["Home page"];
+
+    var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+
+    var categories = (List<Category>)ViewData["Categories"];
+    List<(string Title, List<Category> Categories, string Description, string DescriptionDE, string DescriptionUA, double Price, string ImageLink)> games
+        = (List<(string, List<Category>, string, string, string, double, string)>)ViewData["Games"];
+}
+<sidebar>
+    @{
+        string routeUrlWithoutLastPart = "";
+        string[] subs = Url.RouteUrl(ViewContext.RouteData.Values).Split('/');
+        for (int i = 1; i < subs.Length - 1; i++)
+        {
+            routeUrlWithoutLastPart += "/" + subs[i];
+        }
+    }
+    @if (SignInManager.IsSignedIn(User)
+&& Url.RouteUrl(ViewContext.RouteData.Values) != "/Home/Index"
+&& routeUrlWithoutLastPart != "/Home/Index/Shop"
+)
+    {
+        <a asp-controller="Home"
+           asp-action="Index"
+           asp-route-userName="@UserManager.GetUserName(User)"
+           asp-route-categoryName="AllGames"
+           asp-route-lang="@culture.RequestCulture.UICulture.Name">@localizer["All games"] @UserManager.GetUserName(User)</a>
+        @foreach (var category in categories)
+        {
+            string categoryName;
+            if (culture.RequestCulture.UICulture.Name == "en")
+            {
+                categoryName = category.Name;
+            }
+            else if (culture.RequestCulture.UICulture.Name == "de")
+            {
+                categoryName = category.NameDE;
+            }
+            else
+            {
+                categoryName = category.NameUA;
+            }
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               asp-route-userName=@UserManager.GetUserName(User)
+               asp-route-categoryName=@category.Name
+               asp-route-lang=@culture.RequestCulture.UICulture.Name>@categoryName</a>
+        }
+    }
+    else
+    {
+        <a asp-controller="Home"
+           asp-action="Index"
+           asp-route-userName="Shop"
+           asp-route-categoryName="AllGames"
+           asp-route-lang=@culture.RequestCulture.UICulture.Name>@localizer["All games"]</a>
+        @foreach (var category in categories)
+        {
+            string categoryName;
+            if (culture.RequestCulture.UICulture.Name == "en")
+            {
+                categoryName = category.Name;
+            }
+            else if (culture.RequestCulture.UICulture.Name == "de")
+            {
+                categoryName = category.NameDE;
+            }
+            else
+            {
+                categoryName = category.NameUA;
+            }
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               asp-route-userName="Shop"
+               asp-route-categoryName=@category.Name
+               asp-route-lang=@culture.RequestCulture.UICulture.Name>@categoryName</a>
+         }
+    }
+</sidebar>
+<div class="game-cards-layout container">
+    <div class="row row-cols-4">
+        @foreach (var game in games)
+        {
+            <div class="col game-card-container">
+                <div class="game-card card h-100">
+                    <img src="@game.ImageLink" class="card-img-top" alt="@game.Title image">
+                    <div class="card-body">
+                        <div class="title-category-buybutton">
+                            <div class="title-category">
+                                <h5 class="card-title">@game.Title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    @foreach (var cat in game.Categories)
+                                    {
+                                        if (culture.RequestCulture.UICulture.Name == "en")
+                                        {
+                                            <text>@cat.Name </text>
+                                        }
+                                        else if (culture.RequestCulture.UICulture.Name == "de")
+                                        {
+                                            <text>@cat.NameDE </text>
+                                        }
+                                        else
+                                        {
+                                            <text>@cat.NameUA </text>
+                                        }
+                                    }
+                                </h6>
+                            </div>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <form class="buyForm"
+                                      asp-controller="Home"
+                                      asp-action="Buy"
+                                      asp-route-lang="@culture.RequestCulture.UICulture.Name"
+                                      asp-route-userName="@UserManager.GetUserName(User)"
+                                      asp-route-gameTitle="@game.Title">
+                                    <button type="submit" class="buybutton">
+                                        @if (game.Price == 0)
+                                        {
+                                            <text>@localizer["Free"]</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@game.Price₴</text>
+                                        }
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form class="buyForm">
+                                    <button type="submit">
+                                        @if (game.Price == 0)
+                                        {
+                                            <text>@localizer["Free"]</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@game.Price₴</text>
+                                        }
+                                    </button>
+                                </form>
+                            }
+                        </div>
+                        <p class="card-text">
+                            @if (culture.RequestCulture.UICulture.Name == "en")
+                            {
+                            <text>@game.Description</text>
+                            }
+                            else if (culture.RequestCulture.UICulture.Name == "de")
+                            {
+                            <text>@game.DescriptionDE</text>
+                            }
+                            else
+                            {
+                            <text>@game.DescriptionUA</text>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

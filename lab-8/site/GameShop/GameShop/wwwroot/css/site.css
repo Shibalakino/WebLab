@@ -1,0 +1,164 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    flex: 0 0 auto;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5%;
+    padding-right: 1%;
+    margin: 0px;
+}
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+}
+#logoutButton {
+    font-size: 22px;
+}
+
+header a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: #ffc7c8;
+}
+
+sidebar {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    padding: 1%;
+    margin: 0px;
+}
+
+sidebar a {
+    text-decoration: none;
+    color: #ffc7c8;
+    font-size: 25px;
+    margin: 1%;
+}
+
+footer {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    background-color: black;
+    color: #a58c8d;
+    font-size: 12px;
+}
+
+sidebar a:hover
+{
+	color: #E30B5C;
+}
+
+.game-card {
+    padding: 1%;
+    border: 3px solid khaki;
+    background: khaki;
+    border-radius: 15px;
+    margin: 2% 1%;
+}
+.game-card-container {
+    margin: 1% 0;
+}
+.game-cards-layout {
+    width: 100%;
+    padding: 1% 2%;
+}
+
+.game-cards-layout img {
+    width: 100%;
+    border-radius: 3%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.game-cards-layout p {
+    width: 100%;
+}
+
+.title-category-buybutton {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background: black;
+    color: khaki;
+    font-weight: 700;
+    border-radius: 5%;
+    border: 2px solid black;
+    width: 100%;
+    height: 35px;
+}
+.game-cards-layout button:hover {
+    transition: all .2s linear;
+    box-shadow: 0 0 5px rgba(0,0,0,0.8);
+}
+
+footer {
+    background: black;
+    padding: 2%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+sidebar, .game-cards-layout {
+    float: left;
+}
+header, footer {
+    clear: left;
+}
+
+/*----------------*/
+.card-header-tabs {
+    border: 0;
+    justify-content: space-around;
+
+}
+.nav-item {
+    width: 50%;
+    text-align: center;
+}
+.login-logout-tab {
+    background-color: #ffc7c8;
+    border: 0;
+}
+
+.login-form-icon {
+    text-align-last: center;
+}
+
+.register-login-button {
+    width: 100%;
+    margin: 2% 0;
+}
+/*---------------*/
+#purchase-result-message {
+    color: white;
+    margin: auto;
+    font-size: 2em;
+}
