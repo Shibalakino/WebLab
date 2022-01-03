@@ -19,9 +19,25 @@
 </a>
 @if (SignInManager.IsSignedIn(User))
 {
+
     <div class="text-light">@localizer["Hello"], @UserManager.GetUserName(User)!</div>
     <div class="row">
-        <a id="user-games" class="col nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index" asp-route-userName=@UserManager.GetUserName(User) title=@localizer["My games"]>@localizer["My games"]</a>
+        <a id="user-messages"
+           class="col nav-link text-light"
+           asp-controller="Home"
+           asp-action="UserMessages"
+           asp-route-userName=@UserManager.GetUserName(User)
+           title=@localizer["My messages"]
+           style="white-space: nowrap">
+        @localizer["My messages"]</a>
+        <a id="user-games"
+           class="col nav-link text-light"
+           asp-controller="Home"
+           asp-action="Index"
+           asp-route-userName=@UserManager.GetUserName(User)
+           title=@localizer["My games"]
+           style="white-space: nowrap">
+        @localizer["My games"]</a>
         <form id="logoutForm" class="col form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logoutButton" type="submit" class="nav-link btn btn-link text-light">@localizer["Logout"]</button>
         </form>
