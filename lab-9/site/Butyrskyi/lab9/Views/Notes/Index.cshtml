@@ -1,0 +1,18 @@
+﻿@model IEnumerable<lab9.Models.Note>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

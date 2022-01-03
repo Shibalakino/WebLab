@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -167,5 +168,49 @@ namespace GameShop.Controllers
                 returnUrl = returnUrl.Substring(0, index);
             return LocalRedirect(returnUrl);
         }
+
+        public IActionResult UserMessages()
+        {
+            ViewData["Messages"] = _gameContext.Messages.ToList();
+            return View();
+        }
+
+        // GET: Message/AddOrEdit
+        // GET: Message/AddOrEdit/5
+        //[NoDirectAccess]
+        public async Task<IActionResult> AddMessage(int id)
+        {
+             return View(new Message());
+        }
+
+        // POST: Message/AddOrEdit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddMessage(int id, [Bind("Id,SenderName,RecieverName,Text")] Message message)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _gameContext.Add(message);
+                await _gameContext.SaveChangesAsync();
+
+                return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "UserMessages", _gameContext.Messages.ToList()) });
+            }
+            return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddMessage", message) });
+        }
+
+        // POST: Message/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var message = await _gameContext.Messages.FindAsync(id);
+            _gameContext.Messages.Remove(message);
+            await _gameContext.SaveChangesAsync();
+            return Json(new { html = Helper.RenderRazorViewToString(this, "UserMessages", _gameContext.Messages.ToList()) });
+        }
+
     }
 }

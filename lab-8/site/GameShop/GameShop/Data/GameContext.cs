@@ -10,6 +10,7 @@ namespace GameShop.Data
         public DbSet<Game> Games { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<GameShopUser> GameShopUsers { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public GameContext(DbContextOptions<GameContext> options)
         : base(options)

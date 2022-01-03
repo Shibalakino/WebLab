@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GameShop.Areas.Identity.Data
+
+@inject SignInManager<GameShopUser> SignInManager
+@inject UserManager<GameShopUser> UserManager
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = localizer["My messages"];
+    List<Message> messages = (List<Message>)ViewData["Messages"];
+}
+@model IEnumerable<GameShop.Models.Message>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SenderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecieverName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                <a onclick="showInPopup(
+                '@Url.Action("AddMessage", "Home", null, Context.Request.Scheme)',
+                'New message')"
+                   class="btn btn-success text-white">
+                    New message
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in messages)
+        {
+            if (item.SenderName == @UserManager.GetUserName(User)
+                || item.RecieverName == @UserManager.GetUserName(User))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SenderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecieverName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        <form asp-action="DeleteMessage" asp-route-id="@item.Id"
+                              onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

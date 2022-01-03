@@ -126,4 +126,7 @@
   <data name="My games" xml:space="preserve">
     <value>Meine Spiele</value>
   </data>
+  <data name="My messages" xml:space="preserve">
+    <value>Meine Nachrichten</value>
+  </data>
 </root>

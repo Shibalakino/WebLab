@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MessagingApp.Models.Message>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="all-messages">
+    @await Html.PartialAsync("_AllMessagesPartial", Model)
+</div>

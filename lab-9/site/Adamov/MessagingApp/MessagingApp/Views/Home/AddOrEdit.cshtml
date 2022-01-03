@@ -1,0 +1,55 @@
+﻿@model MessagingApp.Models.Message
+
+@using Microsoft.AspNetCore.Identity
+@using MessagingApp.Areas.Identity.Data
+
+@inject SignInManager<MessagingAppUser> SignInManager
+@inject UserManager<MessagingAppUser> UserManager
+
+@{
+    ViewData["Title"] = "Message";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <!--------------------->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                @*<input type="hidden" value="@UserManager.GetUserName(User)" asp-for="SenderName" class="form-control" />*@
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SenderName" class="control-label"></label>
+                        <input asp-for="SenderName" class="form-control" value="@UserManager.GetUserName(User)" readonly/>
+                        <span asp-validation-for="SenderName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RecieverName" class="control-label"></label>
+                        <input asp-for="RecieverName" class="form-control" />
+                        <span asp-validation-for="RecieverName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <input asp-for="Text" class="form-control" />
+                @*<span asp-validation-for="Text" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
